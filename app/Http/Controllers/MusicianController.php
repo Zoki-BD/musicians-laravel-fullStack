@@ -94,8 +94,6 @@ class MusicianController extends Controller
 
       // $musiciansTest = Musician::all();
 
-
-      //   Namerno e vaka povikan za da gi dade samo tie sto ne se pasivno deleted neli.
       //Ova moze i preku Musician klasata ama moze i preku DB vaka istoto. 
 
       $musiciansTest = DB::table('musicians')->where('deleted', '=', 0)->get();
@@ -121,8 +119,8 @@ class MusicianController extends Controller
       return null;
    }
 
-//Ova e apiID za da imame id vo react calendarot
-     public function apiID($id)
+   //Ova e apiID za da imame id vo react calendarot
+   public function apiID($id)
    {
       if ($id) {
          $musician = Musician::where('id', '=', $id)->first();
@@ -206,14 +204,14 @@ class MusicianController extends Controller
       (isset($musician->id_cities)) ? ($city = ($cityServices->getCitiesById($musician->id_cities))->name) : $city = null;
       (isset($musician->id_instruments)) ? ($instrument = ($instrumentServices->getInstrumentsById($musician->id_instruments))->name) : $instrument = null;
       // dd($city);
-     
+
       //       var_dump($band);
 
       return view('admin/musicians/show', compact('musician', 'band', 'instrument', 'city'));
    }
 
    // EDIT (get za update)________________________________________________________________________________________________________________________________
-   //Ova e get view-to od slikickata pokraj muzicarot vo index view
+
    public function edit($id, MusicianServices $musicianServices, BandServices $bandServices, InstrumentServices $instrumentServices, CityServices $cityServices)
    {
 
@@ -243,14 +241,13 @@ class MusicianController extends Controller
    // UPDATE (post za update)_______________________________________________________________________________________________
    public function update($id, MusicianServices $musicianServices, MusicianRequest $musicianRequest)
    {
-      //$validated = $musicianRequest->validated(); //preku ova samo validiranite ni gi pokazuva t.e tie sto odat preku requestot so zabrani
+      //$validated = $musicianRequest->validated(); 
       $data = $musicianRequest->all();
-      //dd($data); // uloveni se vaka vnesenite polinja.
+      //dd($data); //
 
       /*get old picture name ------------------------------------------------------------------------------------------*/
       $musicians = $musicianServices->getMusiciansById($id);
-      // dd($musicians); ovde go lovime muzicarot so toa id, so site negovi props. pictures e edno od props-ovite od Musician.php
-      // zatoa vikame ako imal slika prethodno, toa ime da bide staro ime -$pictures_name_old,
+
       $pictures_name_old = '';
       if (!empty($musicians['pictures'])) {
          $pictures_name_old = $musicians['pictures'];
@@ -320,21 +317,6 @@ class MusicianController extends Controller
 
    // DELETE_____________________________________________________________________________________________________________________
 
-   //    public function destroy($id, MusicianServices $musicianServices, Request $request)
-   //    {
-   //        //dd($id);
-   //        $musicians = $musicianServices->deleteMusicians($id);
-   //        // dd($musicians);
-   //
-   //        if($musicians) {
-   //            flash(__('auth.delete_success'))->success();
-   //            return redirect(url("musicians/" .'?'. $request->get('query')));
-   //        }
-   //        flash(__('auth.delete_error'))->error();
-   //        return redirect(url("musicians/" .'?'. $request->get('query')));
-   //    }
-
-   //Bese kako gore samo sto ne dozvoluvase dve use klasi Request da se koristat i zatoa ne mozev da idam so $request voopsto;
    public function destroy($id, MusicianServices $musicianServices)
    {
       //dd($id);

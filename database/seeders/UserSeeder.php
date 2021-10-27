@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ZOKI
@@ -16,31 +17,31 @@ use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        //
+   /**
+    * Run the database seeds.
+    *
+    * @return void
+    */
+   public function run()
+   {
+      //
 
-        DB::table('users')->insert([
-            [
-                'name'=> 'Zoki',
-                'surname'=> '',
-                'address'=> 'ул.Некоја бр.60',
-                'phone'=> '123 456 789',
-                'photo'=> '',
-                'email' =>'zoki@zoki.com',
-                'email_verified_at' => null,
-                'username'=> 'zoki',
-                'password'=>Hash::make('zokipoki'),
-                'reset_password_hash'=>null,
-                'remember_token'=>Str::random(10),
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' => Carbon::now()->toDateTimeString(),
-            ],
-        ]);
-    }
+      DB::table('users')->insert([
+         [
+            'name' => 'Zoreki',
+            'surname' => '',
+            'address' => 'ул.Неeкоја eбр.60',
+            'phone' => '123 456 789',
+            'photo' => '',
+            'email' => "",
+            'email_verified_at' => null,
+            'username' => 'zoreki',
+            'password' => Hash::make('????????'),
+            'reset_password_hash' => null,
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+         ],
+      ]);
+   }
 }
